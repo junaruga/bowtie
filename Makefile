@@ -159,29 +159,8 @@ BUILD_CPPS_MAIN = $(BUILD_CPPS) bowtie_build_main.cpp
 SEARCH_FRAGMENTS = $(wildcard search_*_phase*.c)
 VERSION = $(shell cat VERSION)
 
-BITS=32
-ifeq (x86_64,$(shell uname -m))
-	BITS=64
-endif
-# msys will always be 32 bit so look at the cpu arch instead.
-ifneq (,$(findstring AMD64,$(PROCESSOR_ARCHITEW6432)))
-	ifeq (1,$(MINGW))
-		BITS=64
-	endif
-endif
-
-ifeq (1,$(LINUX))
-    ifeq (x86_64, $(shell uname -p))
-        BITS=64
-    endif
-endif
-
-ifeq (32,$(BITS))
-    $(error bowtie2 compilation requires a 64-bit platform )
-endif
-
-DEBUG_FLAGS = -O0 -g3 -m64
-RELEASE_FLAGS = -O3 -m64
+DEBUG_FLAGS = -O0 -g3
+RELEASE_FLAGS = -O3
 NOASSERT_FLAGS = -DNDEBUG
 FILE_FLAGS = -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE
 
