@@ -14,8 +14,6 @@ use Data::Dumper;
 use DNA;
 use Clone qw(clone);
 use Test::Deep;
-use Sys::Info;
-use Sys::Info::Constants qw( :device_cpu );
 
 my $bowtie = "";
 my $bowtie_build = "";
@@ -1130,9 +1128,8 @@ sub runbowtie($$$$$$$$$$$$$$$$$$$$$$$) {
 	while(<FA>) { print $_; }
 	close(FA);
 	if($do_build) {
-		my $info = Sys::Info->new;
-		my $cpu = $info->device('CPU');
-		my $nthreads = int(rand($cpu->count || 1)) + 1;
+		my $cpu_count = 2;
+		my $nthreads = int(rand($cpu_count || 1)) + 1;
 		my $build_args = "";
 		$build_args .= " -C " if $color;
 		my $cmd = "$bowtie_build $idx_type --threads $nthreads --quiet --sanity $build_args $fa .simple_tests.tmp";
