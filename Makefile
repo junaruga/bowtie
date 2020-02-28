@@ -5,9 +5,9 @@
 prefix = /usr/local
 bindir = $(prefix)/bin
 
-SEQAN_DIR = ./SeqAn-1.1
+SEQAN_DIR =
 # treat SeqAn as a sysdir to suppress warnings
-SEQAN_INC = -isystem $(SEQAN_DIR)
+SEQAN_INC =
 INC = $(if $(RELEASE_BUILD),-I$(CURDIR)/.include) $(SEQAN_INC)
 CPP ?= g++
 CXX ?= $(CPP)
