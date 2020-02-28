@@ -5,9 +5,9 @@
 prefix = /usr/local
 bindir = $(prefix)/bin
 
-SEQAN_DIR =
+SEQAN_DIR = ./third_party/seqan-library-1.4.2/include
 # treat SeqAn as a sysdir to suppress warnings
-SEQAN_INC =
+SEQAN_INC = -isystem $(SEQAN_DIR)
 INC = $(if $(RELEASE_BUILD),-I$(CURDIR)/.include) $(SEQAN_INC)
 CPP ?= g++
 CXX ?= $(CPP)
