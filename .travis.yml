@@ -1,10 +1,10 @@
 dist: xenial
 language: cpp
 sudo: required
-branches:
-  only:
-    - master
-    - bug_fixes
+# branches:
+#   only:
+#     - master
+#     - bug_fixes
 matrix:
   include:
     # Linux (gcc4.9)
