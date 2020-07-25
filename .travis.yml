@@ -74,6 +74,9 @@ before_script:
   - echo CC=${CC} CXX=${CXX} NPROC=${NPROC}
   - $CC --version
   - $CXX --version
+  # Debug
+  - $CXX -o test test.cpp
+  - ./test
 script: make -j $NPROC allall && make simple-test
 notifications:
   slack:
