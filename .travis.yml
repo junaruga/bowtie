@@ -1,10 +1,10 @@
 dist: xenial
 language: cpp
 sudo: required
-branches:
-  only:
-    - master
-    - bug_fixes
+# branches:
+#   only:
+#     - master
+#     - bug_fixes
 matrix:
   include:
     # Linux (gcc4.9)
@@ -59,11 +59,22 @@ matrix:
       arch: s390x
       env:
         - POPCNT_CAPABILITY=0
+    - os: linux
+      arch: s390x
+      dist: bionic
+      env:
+        - POPCNT_CAPABILITY=0
     # PPC64LE
     - os: linux
       arch: ppc64le
       env:
         - POPCNT_CAPABILITY=0
+    - os: linux
+      arch: ppc64le
+      dist: bionic
+      env:
+        - POPCNT_CAPABILITY=0
+
 cache: apt
 env:
   global:
@@ -74,6 +85,9 @@ before_script:
   - echo CC=${CC} CXX=${CXX} NPROC=${NPROC}
   - $CC --version
   - $CXX --version
+  # Debug
+  - $CXX -o debug debug.cpp
+  - ./debug
 script: make -j $NPROC allall && make simple-test
 notifications:
   slack:
