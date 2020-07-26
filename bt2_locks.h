@@ -1,7 +1,7 @@
 #ifndef __MCSLOCK_H__
 #define __MCSLOCK_H__
 
-#if (__cplusplus >= 201103L)
+#if (__cplusplus >= 201103L) && (defined(__x86_64__) || defined(__aarch64__))
 
 #include <atomic>
 #include <sched.h>
