@@ -59,11 +59,22 @@ matrix:
       arch: s390x
       env:
         - POPCNT_CAPABILITY=0
+    - dist: bionic
+      os: linux
+      arch: s390x
+      env:
+        - POPCNT_CAPABILITY=0
     # PPC64LE
+    - dist: bionic
+      os: linux
+      arch: ppc64le
+      env:
+        - POPCNT_CAPABILITY=0
     - os: linux
       arch: ppc64le
       env:
         - POPCNT_CAPABILITY=0
+
 cache: apt
 env:
   global:
